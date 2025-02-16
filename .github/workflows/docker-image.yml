@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Install dependencies and build the React app
+      # Install dependencies and build the Vite app
       - name: Install Dependencies and Build
         run: |
           rm -rf node_modules package-lock.json
@@ -61,8 +61,8 @@ jobs:
 
             # Run the new container with SSL environment variables
             sudo docker run -d -p 80:80 -p 443:443 \
-              -e SSL_CERT_CHAIN="${{ secrets.SSL_CERT_CHAIN }}" \
-              -e SSL_PRIVATE_KEY="${{ secrets.SSL_PRIVATE_KEY }}" \
+              -e VITE_SSL_CERT_CHAIN="${{ secrets.SSL_CERT_CHAIN }}" \
+              -e VITE_SSL_PRIVATE_KEY="${{ secrets.SSL_PRIVATE_KEY }}" \
               --name webportfolio \
               ${{ secrets.DOCKER_USERNAME }}/webportfolio:latest
 
